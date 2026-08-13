@@ -1,2 +1,7 @@
 /.vscode
 /pagila-master
+# Large data files
+SQL_Project_Data_Job_analysis/csv_files/job_postings_fact.csv
+SQL_Project_Data_Job_analysis/csv_files/company_dim.csv
+SQL_Project_Data_Job_analysis/csv_files/skills_dim.csv
+SQL_Project_Data_Job_analysis/csv_files/skills_job_dim.csv
