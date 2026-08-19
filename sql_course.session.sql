@@ -1,0 +1,36 @@
+INSERT INTO job_postings_fact (
+    job_id,
+    company_id,
+    job_title_short,
+    job_title,
+    job_location,
+    job_via,
+    job_schedule_type,
+    job_work_from_home,
+    search_location,
+    job_posted_date,
+    job_no_degree_mention,
+    job_health_insurance,
+    job_country,
+    salary_rate,
+    salary_year_avg,
+    salary_hour_avg
+  )
+VALUES (
+    job_id:integer,
+    company_id:integer,
+    'job_title_short:character varying',
+    'job_title:text',
+    'job_location:text',
+    'job_via:text',
+    'job_schedule_type:text',
+    job_work_from_home:boolean,
+    'search_location:text',
+    'job_posted_date:timestamp without time zone',
+    job_no_degree_mention:boolean,
+    job_health_insurance:boolean,
+    'job_country:text',
+    'salary_rate:text',
+    salary_year_avg:numeric,
+    salary_hour_avg:numeric
+  );
