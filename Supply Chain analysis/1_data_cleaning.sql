@@ -169,7 +169,7 @@ SELECT
     ROUND(AVG(number_of_products_sold), 2) as avg_products_sold
 FROM
     supply_chain;
-
+COMMIT;
 
 
 
