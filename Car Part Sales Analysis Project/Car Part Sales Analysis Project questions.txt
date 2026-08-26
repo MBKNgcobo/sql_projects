@@ -1,0 +1,57 @@
+Car Part Sales Analysis Project
+
+A. Marketplace Performance
+How many vehicle/part listings are being created over time, and what are the overall marketplace trends?
+Which categories generate the highest number of listings?
+Which vehicle types are most frequently represented in the marketplace?
+How has listing activity changed over time?
+What percentage of listings are active, inactive, or in other application statuses?
+Which categories and vehicle types have the highest proportion of active listings?
+
+B. Pricing & Market Demand
+What is the average listing price by vehicle type and category?
+Which categories have the highest and lowest average prices?
+How does pricing vary between different vehicle manufacturers and models?
+Are certain vehicle types associated with significantly higher listing prices?
+What are the most expensive and most affordable categories/models in the marketplace?
+How does listing price differ between item conditions?
+
+C. Seller Performance
+Which sellers contribute the most listings to the marketplace?
+Which sellers have the highest proportion of active listings?
+Are a small number of sellers responsible for a large proportion of marketplace inventory?
+How does seller activity vary across product categories?
+Which sellers specialize in particular vehicle types or categories?
+Which sellers have the broadest product/vehicle coverage?
+
+D. Vehicle & Manufacturer Analysis
+Which manufacturers have the greatest representation in the marketplace?
+Which vehicle models appear most frequently in listings?
+Which manufacturers have the highest average listing prices?
+Which vehicle types have the greatest number of compatible applications?
+Are certain manufacturers more strongly represented in particular categories?
+Which vehicle models have the widest range of available listings?
+
+E. Compatibility Analysis
+Which vehicle models have the greatest number of compatible listings?
+Which vehicle types have the widest range of compatible products?
+Which listings have the broadest vehicle compatibility?
+Are there vehicle models with very limited compatible product availability?
+Which manufacturers have the highest number of compatible products?
+Are certain vehicle categories more broadly compatible than others?
+
+F. Product/Category Opportunities
+Which categories have high listing volumes but relatively low seller participation?
+Which categories are dominated by a small number of sellers?
+Which categories have experienced the strongest growth over time?
+Which categories have low marketplace coverage but high vehicle compatibility?
+Which vehicle types appear underserved by the current product catalogue?
+Where are the biggest gaps between marketplace supply and vehicle compatibility?
+
+G. Data Quality / Operational Analysis
+Are there duplicate application/listing records?
+Are there listings with missing or invalid vehicle information?
+Are there categories without valid parent categories?
+Are there applications referencing vehicles or sellers that don't exist?
+Are there unusual or potentially incorrect listing prices?
+Are there compatibility records with invalid year ranges?
