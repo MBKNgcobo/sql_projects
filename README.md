@@ -1,87 +1,232 @@
-# SQL Projects
+# SQL Portfolio Projects
 
-A collection of SQL projects and exercises demonstrating my ability to work with relational databases, analyze data, and build queries that solve practical business problems.
+A collection of SQL projects focused on using data to answer **real-world business questions** through data exploration, transformation, analysis, and reporting.
 
-The purpose of this repository is to demonstrate my progression from writing basic SQL queries to developing more advanced, business-focused queries involving multiple tables, aggregations, Common Table Expressions, subqueries, and window functions.
+These projects demonstrate my ability to work with relational data and use SQL to identify trends, calculate business metrics, investigate relationships between datasets, and turn raw data into actionable insights.
 
 ---
 
-## Skills Demonstrated
+## Projects
 
-### SQL Fundamentals
+### 1. Car Part Sales Analysis
+
+**Objective:**
+Analyse car-part sales data to understand sales performance, customer behaviour, product performance, and revenue trends.
+
+**Key Areas of Analysis:**
+
+* Sales and revenue performance
+* Product and car-part performance
+* Customer purchasing behaviour
+* Regional and category-level sales
+* Top-performing products and customers
+* Average order values
+* Revenue trends and comparisons
+
+**SQL Concepts Used:**
 
 * `SELECT`, `WHERE`, `ORDER BY`
-* `DISTINCT`
-* `CASE` expressions
-* Filtering and sorting data
-* Aggregate functions such as `SUM`, `AVG`, `COUNT`, `MIN`, and `MAX`
-
-### Data Analysis
-
+* `JOIN`
 * `GROUP BY`
-* `HAVING`
-* Business KPI calculations
-* Customer and sales analysis
-* Department-level analysis
-* Revenue and spending analysis
-
-### Advanced SQL
-
-* `INNER JOIN`
-* `LEFT JOIN`
-* Multiple-table joins
-* Subqueries
+* Aggregate functions
+* `CASE`
 * Common Table Expressions (CTEs)
+* Subqueries
 * Window functions
 * `RANK()`
 * `DENSE_RANK()`
 * `ROW_NUMBER()`
-* `LAG()`
-* `LEAD()`
-* Cumulative calculations
-* Percentage-change calculations
-
-### Query Design
-
-* Breaking complex problems into smaller steps
-* Choosing between CTEs and subqueries
-* Applying filters at the correct stage of a query
-* Using window functions for analytical problems
-* Writing readable and maintainable SQL
-
-
-## Projects
-
-### 1. Customer & Sales Analysis
-
-Business-focused SQL analysis examining customer purchasing behaviour and revenue.
-
-**Key concepts:**
-
-* Joins
-* Aggregations
-* `GROUP BY`
 * `HAVING`
-* CTEs
-* Window functions
-* Customer ranking
 
-Example questions explored:
+**Business Questions:**
 
-* Which customers generate the most revenue?
-* What is each customer's total spending?
-* How do customers rank against one another?
-* Which customers exceed a specific spending threshold?
+* Which products generate the most revenue?
+* Which customers contribute the most to sales?
+* Which categories perform best?
+* What are the average order values?
+* How does sales performance differ across regions?
 
 ---
 
-### 2. Employee & Department Analysis
+### 2. Supply Chain Analysis
 
-SQL analysis focused on employee compensation and department-level comparisons.
+**Objective:**
+Analyse supply chain data to evaluate operational performance, inventory movement, supplier performance, and potential areas of inefficiency.
 
-**Key concepts:**
+**Key Areas of Analysis:**
 
+* Supplier performance
+* Inventory levels
+* Product movement
+* Order performance
+* Supply chain costs
+* Lead times
+* Regional performance
+* Operational efficiency
+
+**SQL Concepts Used:**
+
+* Multi-table `JOIN`s
 * Aggregations
 * CTEs
 * Subqueries
+* `CASE` statements
+* Date-based analysis
 * Window functions
+* Ranking
+* Conditional aggregation
+* `HAVING`
+
+**Business Questions:**
+
+* Which suppliers perform best?
+* Which products have the highest demand?
+* Where are potential supply chain bottlenecks?
+* Which suppliers or products contribute the most to costs?
+* How does operational performance vary across regions?
+
+---
+
+### 3. Job Data Analysis
+
+**Objective:**
+Analyse job-market data to identify trends in job availability, salaries, skills, industries, and job requirements.
+
+**Key Areas of Analysis:**
+
+* Job availability
+* Salary analysis
+* Job titles and roles
+* Required technical skills
+* Experience requirements
+* Location-based trends
+* Industry demand
+* Employer/job-market trends
+
+**SQL Concepts Used:**
+
+* Data filtering and transformation
+* Multi-table `JOIN`s
+* `GROUP BY`
+* Aggregations
+* CTEs
+* Subqueries
+* `CASE`
+* Window functions
+* Ranking
+* Conditional aggregation
+
+**Business Questions:**
+
+* Which roles appear most frequently?
+* Which skills are most in demand?
+* Which roles have the highest salaries?
+* How does salary vary by experience level?
+* Which locations have the most opportunities?
+* What technical skills are associated with higher-paying roles?
+
+---
+
+## SQL Skills Demonstrated
+
+Across these projects, I have worked with SQL techniques including:
+
+```sql
+-- Filtering
+WHERE
+
+-- Aggregation
+GROUP BY
+HAVING
+COUNT()
+SUM()
+AVG()
+MIN()
+MAX()
+
+-- Combining data
+INNER JOIN
+LEFT JOIN
+RIGHT JOIN
+
+-- Conditional logic
+CASE
+
+-- Advanced querying
+CTEs
+Subqueries
+
+-- Window functions
+RANK()
+DENSE_RANK()
+ROW_NUMBER()
+LAG()
+LEAD()
+```
+
+The projects also involve building queries progressively—from basic data exploration to more advanced analytical queries involving **multiple tables, business logic, aggregations, CTEs, and window functions**.
+
+---
+
+## Repository Structure
+
+```text
+SQL-Projects/
+│
+├── Car-Part-Sales-Analysis/
+│   ├── README.md
+│   ├── data/
+│   └── queries/
+│
+├── Supply-Chain-Analysis/
+│   ├── README.md
+│   ├── data/
+│   └── queries/
+│
+├── Job-Data-Analysis/
+│   ├── README.md
+│   ├── data/
+│   └── queries/
+│
+└── README.md
+```
+
+---
+
+## Approach
+
+For each project, I follow a structured analytical process:
+
+**1. Understand the business problem**
+Identify what the organisation wants to understand or improve.
+
+**2. Explore the data**
+Examine tables, relationships, data types, missing values, and relevant fields.
+
+**3. Build the analysis**
+Start with exploratory queries and progressively develop more complex SQL.
+
+**4. Answer business questions**
+Use SQL to calculate relevant metrics and identify trends or patterns.
+
+**5. Extract insights**
+Translate query results into meaningful business findings.
+
+---
+
+## Tools
+
+* **SQL**
+* **MySQL / PostgreSQL** *(update this to the database you actually use)*
+* **VS Code**
+* **Git & GitHub**
+
+---
+
+## About Me
+
+I am an **IT graduate** interested in software development, data analysis, SQL, automation, and building technology-driven solutions to real-world business problems.
+
+I created these projects to strengthen my ability to move beyond writing individual SQL statements and develop the **query-building and analytical reasoning skills** required to solve practical business problems with data.
+
+---
