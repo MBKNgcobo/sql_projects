@@ -49,43 +49,6 @@ The purpose of this repository is to demonstrate my progression from writing bas
 * Using window functions for analytical problems
 * Writing readable and maintainable SQL
 
----
-
-## Repository Structure
-
-```text
-SQL-Projects/
-│
-├── README.md
-│
-├── Basic-SQL/
-│   ├── filtering.sql
-│   ├── aggregation.sql
-│   └── case-statements.sql
-│
-├── Joins/
-│   ├── inner-joins.sql
-│   ├── left-joins.sql
-│   └── multi-table-joins.sql
-│
-├── CTEs-and-Subqueries/
-│   ├── cte-exercises.sql
-│   └── subquery-exercises.sql
-│
-├── Window-Functions/
-│   ├── ranking.sql
-│   ├── lag-lead.sql
-│   └── cumulative-analysis.sql
-│
-└── Projects/
-    ├── customer-analysis/
-    ├── sales-analysis/
-    └── employee-analysis/
-```
-
-> The folder structure may change as additional projects are added.
-
----
 
 ## Projects
 
