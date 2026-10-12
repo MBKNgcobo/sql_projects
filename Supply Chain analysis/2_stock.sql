@@ -18,7 +18,7 @@ SELECT
     number_of_products_sold
 FROM supply_chain
 WHERE stock_levels < 20
-ORDER BY number_of_products_sold DESC
+ORDER BY number_of_products_sold DESC;
 /*
 Products with low stock levels may be at risk of stockouts.
 */
@@ -27,7 +27,7 @@ Products with low stock levels may be at risk of stockouts.
 How much inventory remains relative to the number of products sold?
 */
 SELECT
-    stock_levels::numeric / number_of_products_sold::numeric as inventory_to_sales_ratio,
+    stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS inventory_to_sales_ratio,
     sku,
     product_type,
     stock_levels,
@@ -37,7 +37,7 @@ WHERE stock_levels < 20
 ORDER BY inventory_to_sales_ratio;
 --
 WITH inventory_sales_ratio AS (
-    SELECT stock_levels::numeric / number_of_products_sold::numeric as ratio,
+    SELECT stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS ratio,
         sku,
         product_type,
         stock_levels,
@@ -81,7 +81,7 @@ GROUP BY risk_level;
 */
 --
 WITH inventory_sales_ratio AS (
-    SELECT stock_levels::numeric / number_of_products_sold::numeric as ratio,
+    SELECT stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS ratio,
         sku,
         product_type,
         stock_levels,
@@ -121,7 +121,7 @@ ORDER BY product_type, risk_level;
 
 --Risk level distribution by product type
 WITH inventory_sales_ratio AS (
-    SELECT stock_levels::numeric / number_of_products_sold::numeric as ratio,
+    SELECT stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS ratio,
         sku,
         product_type,
         stock_levels,

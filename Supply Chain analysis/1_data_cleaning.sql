@@ -1,4 +1,11 @@
 /*
+    Supply Chain - table definition and data-quality profiling.
+    Despite the file name, this script profiles the raw data; it does not
+    modify it. Table creation uses IF NOT EXISTS so the file can run after
+    0_import.sql without failing.
+    Run 0_import.sql first if the table does not exist yet.
+*/
+/*
 Product Type: The type of product associated with specific data in the supply chain. (i.e haircare, skincare)
 SKU (Stock Keeping Unit): Unique code used to identify a particular product.
 Price: The price of the product or item in the supply chain.
@@ -25,7 +32,7 @@ Routes: Routes or paths used to send products from one point to another in the s
 Costs: Costs related to various aspects of the supply chain, including transportation, inventory, warehousing, order processing, administration, and other costs.
 No time period provided
 */
-CREATE TABLE supply_chain (
+CREATE TABLE IF NOT EXISTS supply_chain (
     product_type VARCHAR(50),
     sku VARCHAR(20),
     price NUMERIC(12,2),
@@ -57,11 +64,12 @@ SELECT
 FROM 
     supply_chain;
 
---first 5 rows
+--first 5 rows (ordered so the sample is deterministic)
 SELECT 
     *
 FROM 
     supply_chain
+ORDER BY sku
 LIMIT 5;
 
 --NUll value check
@@ -169,7 +177,6 @@ SELECT
     ROUND(AVG(number_of_products_sold), 2) as avg_products_sold
 FROM
     supply_chain;
-COMMIT;
 
 
 

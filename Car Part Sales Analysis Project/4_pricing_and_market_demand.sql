@@ -1,57 +1,64 @@
 /*
     Pricing & Market Demand
 */
---What is the average listing price by vehicle type and category
+
+--What is the average listing price by vehicle type?
 SELECT
-    vt.vehicle_type_name as vehicle_type,
-   -- pc.category_name as category_name,
-    AVG(app.price_usd) as avarage_price
+    vt.vehicle_type_name AS vehicle_type,
+    COUNT(*) AS listing_count,
+    ROUND(AVG(NULLIF(app.price_usd, 0)), 2) AS avg_price_usd
 FROM applications app
 JOIN vehicle_type vt
-    on app.vehicle_type_id = vt.id
-JOIN product_category pc
-    on app.category_id = pc.id
-GROUP BY  vehicle_type;
+    ON app.vehicle_type_id = vt.id
+GROUP BY vehicle_type
+ORDER BY avg_price_usd DESC;
 
+--What is the average listing price by category?
 SELECT
-    --vt.vehicle_type_name as vehicle_type,
-    pc.category_name as category_name,
-    AVG(app.price_usd) as avarage_price
+    pc.category_name,
+    COUNT(*) AS listing_count,
+    ROUND(AVG(NULLIF(app.price_usd, 0)), 2) AS avg_price_usd
 FROM applications app
-JOIN vehicle_type vt
-    on app.vehicle_type_id = vt.id
 JOIN product_category pc
-    on app.category_id = pc.id
-GROUP BY  category_name
-ORDER BY avarage_price DESC;  
+    ON app.category_id = pc.id
+GROUP BY pc.category_name
+ORDER BY avg_price_usd DESC;
 
---How does pricing vary between different vehicle manufacturers and models?
-SELECT 
+--How does pricing vary between different vehicle manufacturers?
+SELECT
     v.manufacturer_name,
-    AVG(app.price_usd) as avarage_price
+    COUNT(*) AS listing_count,
+    ROUND(AVG(NULLIF(app.price_usd, 0)), 2) AS avg_price_usd
 FROM applications app
-JOIN vehicle_type vt
-    on app.vehicle_type_id = vt.id
-JOIN  vehicles v
-    on vt.id = v.id
-GROUP BY v.manufacturer_name;
+JOIN compatibility comp
+    ON app.app_id = comp.app_id
+JOIN vehicles v
+    ON comp.vehicles_id = v.id
+GROUP BY v.manufacturer_name
+ORDER BY avg_price_usd DESC;
 
-SELECT 
+--How does pricing vary between different vehicle models?
+SELECT
     v.model_name,
-    AVG(app.price_usd) as avarage_price
+    COUNT(*) AS listing_count,
+    ROUND(AVG(NULLIF(app.price_usd, 0)), 2) AS avg_price_usd
 FROM applications app
-JOIN vehicle_type vt
-    on app.vehicle_type_id = vt.id
-JOIN  vehicles v
-    on vt.id = v.id
-GROUP BY v.model_name;
+JOIN compatibility comp
+    ON app.app_id = comp.app_id
+JOIN vehicles v
+    ON comp.vehicles_id = v.id
+GROUP BY v.model_name
+ORDER BY avg_price_usd DESC;
 
 --How does listing price differ between item conditions?
 SELECT
     item_condition,
-    AVG(price_usd) as avarage_price
+    COUNT(*) AS listing_count,
+    ROUND(AVG(NULLIF(price_usd, 0)), 2) AS avg_price_usd
 FROM applications
-GROUP BY item_condition;
+GROUP BY item_condition
+ORDER BY avg_price_usd DESC;
+
 
 
 

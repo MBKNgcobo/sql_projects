@@ -1,7 +1,17 @@
-/.vscode
-/pagila-master
-# Large data files
+# Editors / OS junk (recreated automatically by macOS Finder etc.)
+.vscode/
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Third-party demo database (imported for practice; not part of this audit)
+/pagila-master/
+
+# Secrets - never commit these
+token.txt
+*.token
+
+# Too large to track (123 MB). Download separately; see
+# SQL_Project_Data_Job_analysis/README.md for the source and load instructions.
 SQL_Project_Data_Job_analysis/csv_files/job_postings_fact.csv
-SQL_Project_Data_Job_analysis/csv_files/company_dim.csv
-SQL_Project_Data_Job_analysis/csv_files/skills_dim.csv
-SQL_Project_Data_Job_analysis/csv_files/skills_job_dim.csv
+

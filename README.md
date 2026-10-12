@@ -171,24 +171,25 @@ The projects also involve building queries progressively—from basic data explo
 ## Repository Structure
 
 ```text
-SQL-Projects/
-│
-├── Car-Part-Sales-Analysis/
-│   ├── README.md
-│   ├── data/
-│   └── queries/
-│
-├── Supply-Chain-Analysis/
-│   ├── README.md
-│   ├── data/
-│   └── queries/
-│
-├── Job-Data-Analysis/
-│   ├── README.md
-│   ├── data/
-│   └── queries/
-│
-└── README.md
+SQL_Projects/
+|-- Car Part Sales Analysis Project/
+|   |-- 0_create_database.sql ... 6_*.sql   load + analysis scripts
+|   |-- archive/                            7 source CSVs
+|   `-- README.md
+|-- SQL_Project_Data_Job_analysis/
+|   |-- sql_load/                           create DB, tables, \copy load
+|   |-- project_sql/                        the four core questions
+|   |-- advanced_sql/                       dates, CASE, CTEs
+|   |-- csv_files/                          source CSVs (job_postings: see README)
+|   `-- README.md
+|-- Supply Chain analysis/
+|   |-- 0_import.sql ... 6_*.sql            load + analysis scripts
+|   |-- archive/                            supply_chain_data.csv
+|   `-- README.md
+|-- docs/                                  SQA_BASELINE.md, SQA_REPORT.md
+|-- tests/                                 python + SQL data-quality checks
+|-- .github/workflows/                     SQL QA CI
+`-- README.md
 ```
 
 ---
@@ -216,10 +217,38 @@ Translate query results into meaningful business findings.
 
 ## Tools
 
-* **SQL**
-* **MySQL / PostgreSQL** *(update this to the database you actually use)*
+* **SQL** (PostgreSQL dialect — every project targets PostgreSQL)
+* **PostgreSQL / psql** for loading and running the scripts
+* **Python** for the repository's data-contract tests (standard library only)
+* **SQLFluff** for linting
 * **VS Code**
 * **Git & GitHub**
+
+---
+
+## Getting Started
+
+Each project has its own README with a copy-paste load/run sequence:
+
+* [Car Part Sales Analysis](Car%20Part%20Sales%20Analysis%20Project/README.md)
+* [SQL Project — Data Job Analysis](SQL_Project_Data_Job_analysis/README.md)
+* [Supply Chain Analysis](Supply%20Chain%20analysis/README.md)
+
+## Quality & Testing
+
+```bash
+python tests/python/test_sql_balance.py    # structural checks on every SQL file
+python tests/python/validate_datasets.py   # dataset contract (row counts, keys, integrity)
+python -m sqlfluff lint                    # correctness-oriented SQL lint
+```
+
+`tests/sql/` holds DB-backed checks with expected values inline; run them
+manually after loading a project (local PostgreSQL uses `scram-sha-256` and
+no credentials are stored in the repo). All three checks also run in CI on
+every push via `.github/workflows/sql-qa.yml`.
+
+Audit documentation: [baseline findings](docs/SQA_BASELINE.md) and
+[post-fix report](docs/SQA_REPORT.md).
 
 ---
 

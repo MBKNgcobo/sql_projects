@@ -1,0 +1,35 @@
+# CI for the SQL portfolio: structural SQL checks, dataset contract checks
+# and a correctness-oriented SQLFluff lint. See docs/SQA_REPORT.md.
+name: SQL QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  static-tests:
+    name: Structural + dataset checks (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Comment/string/paren balance across all SQL files
+        run: python tests/python/test_sql_balance.py
+      - name: Dataset contract (row counts, keys, integrity)
+        run: python tests/python/validate_datasets.py
+
+  sqlfluff:
+    name: SQLFluff lint (postgres dialect)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SQLFluff (pinned to the config-validated version)
+        run: pip install sqlfluff==4.4.0
+      - name: Lint
+        run: sqlfluff lint

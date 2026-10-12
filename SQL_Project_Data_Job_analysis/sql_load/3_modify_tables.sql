@@ -1,42 +1,40 @@
-/* ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-Database Load Issues (follow if receiving permission denied when running SQL code below)
+/*
+    Database Load Scripts (SQL_Project_Data_Job_analysis)
+    ------------------------------------------------------------------
+    Windows file-access pattern:
+    The server-side COPY statements (no leading backslash) read the CSV
+    from the PostgreSQL server process account. On local Windows setups
+    this typically fails with:
 
-NOTE: If you are having issues with permissions. And you get error: 
+        'could not open file <path>' for reading: Permission denied.
 
-'could not open file "[your file path]\job_postings_fact.csv" for reading: Permission denied.'
+    because the service account cannot see your user profile.
 
-1. Open pgAdmin
-2. In Object Explorer (left-hand pane), navigate to `sql_course` database
-3. Right-click `sql_course` and select `PSQL Tool`
-    - This opens a terminal window to write the following code
-4. Get the absolute file path of your csv files
-    1. Find path by right-clicking a CSV file in VS Code and selecting “Copy Path”
-5. Paste the following into `PSQL Tool`, (with the CORRECT file path)
+    Recommended fix: use the \copy (backslash-copy) form shown below,
+    which reads the CSV from your client-side session instead. The only
+    difference from server-side COPY is the leading backslash. Point the
+    path at the CSV files in this repository's csv_files/ folder and
+    re-run from psql (pgAdmin: SQL Tool).
 
-\copy company_dim FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\company_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+    Server-side equivalent of the statements below (run only if the
+    postgres service account can read the path):
 
-\copy skills_dim FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\skills_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+        COPY company_dim FROM 'C:/path/to/csv_files/company_dim.csv'
+            WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-\copy job_postings_fact FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\job_postings_fact.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
-\copy skills_job_dim FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\skills_job_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
+    Encoding note: every CSV in csv_files/ is valid UTF-8. The *_utf8.csv
+    variants carry an extra BOM/line-ending difference and are redundant.
+    Expected row counts after load (verified on disk):
+        company_dim      140,033
+        skills_dim           259
+        job_postings_fact 787,686
+        skills_job_dim 3,669,604
 */
 
--- NOTE: This has been updated from the video to fix issues with encoding
+\copy company_dim FROM 'C:/Users/mcngc/Downloads/SQL/SQL_Project_Data_Job_analysis/csv_files/company_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-COPY company_dim
-FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\company_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+\copy skills_dim FROM 'C:/Users/mcngc/Downloads/SQL/SQL_Project_Data_Job_analysis/csv_files/skills_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-COPY skills_dim
-FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\skills_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+\copy job_postings_fact FROM 'C:/Users/mcngc/Downloads/SQL/SQL_Project_Data_Job_analysis/csv_files/job_postings_fact.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-COPY job_postings_fact
-FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\job_postings_fact.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
-COPY skills_job_dim
-FROM 'C:\Users\mcngc\Downloads\SQL\SQL_Project_Data_Job_analysis\csv_files\skills_job_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+\copy skills_job_dim FROM 'C:/Users/mcngc/Downloads/SQL/SQL_Project_Data_Job_analysis/csv_files/skills_job_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');

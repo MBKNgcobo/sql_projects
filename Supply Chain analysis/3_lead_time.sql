@@ -8,7 +8,7 @@ FROM
 
 --Does Lead Time Affect Inventory Risk?
 WITH inventory_sales_ratio AS (
-    SELECT stock_levels::numeric / number_of_products_sold::numeric as ratio,
+    SELECT stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS ratio,
         sku,
         product_type,
         stock_levels,

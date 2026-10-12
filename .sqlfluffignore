@@ -1,0 +1,11 @@
+# SQLFluff ignore file (gitignore syntax).
+# Third-party demo database - imported as-is, not under audit.
+pagila-master/
+# psql meta-command scripts (\copy) are not parseable by SQLFluff.
+Supply Chain analysis/0_import.sql
+Car Part Sales Analysis Project/2_import.sql
+SQL_Project_Data_Job_analysis/sql_load/3_modify_tables.sql
+# Auto-generated editor session files.
+*.session.sql
+# Dataset queries use relative \copy paths; not parseable either.
+Online_retail/

@@ -1,0 +1,41 @@
+# SQLFluff configuration for the SQL portfolio repository.
+# Run: python -m sqlfluff lint
+# CI runs the same command; see .github/workflows/sql-qa.yml.
+# Files SQLFluff must not parse (psql meta-commands, third-party demos,
+# editor session artifacts) are listed in .sqlfluffignore.
+
+[sqlfluff]
+dialect = postgres
+templater = raw
+
+# Style-only rules are excluded so the lint gate measures correctness
+# (unqualified references, ambiguous joins, parse errors) rather than
+# formatting taste. The portfolio mixes implicit table aliases, lowercase
+# keywords and exploratory SELECT *; normalising those is optional
+# polish (`sqlfluff fix`) and would rewrite history-sized diffs.
+exclude_rules =
+    AL01,
+    AL03,
+    AM04,
+    AM05,
+    CP01,
+    CP02,
+    LT01,
+    LT02,
+    LT03,
+    LT05,
+    LT08,
+    LT09,
+    LT12,
+    LT13,
+    LT14,
+    LT15,
+    RF04,
+    ST01,
+    ST03,
+    ST06,
+    ST09
+
+[sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4

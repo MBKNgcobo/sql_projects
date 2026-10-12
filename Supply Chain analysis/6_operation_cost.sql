@@ -17,16 +17,27 @@ FROM  supply_chain
 ORDER BY estimated_profit DESC;
 /*
  SKU51 has the highest estimated profit, with only 154 products sold
- SKU2 has a discripency with high estimated profit at 9555.11,
+ SKU2 has a discrepancy with high estimated profit at 9555.11,
  this is due to the high revenue generated while only having 8 units sold. Might be a data quality issue
-Dataset is inconsistant
+Dataset is inconsistent
 */
 
 --Which product type has the highest profit margin?
-SELECT 
+/*
+    DATA LIMITATION: manufacturing_costs and shipping_costs appear to be
+    per-unit values while revenue_generated is a total, so this margin is
+    close to 100% by construction. Treat it as a relative comparison between
+    product types, not an accounting margin. NULLIF guards against a
+    zero-revenue group.
+*/
+SELECT
     product_type,
-    SUM((revenue_generated - (manufacturing_costs-shipping_costs))/ revenue_generated) as profit_margin,
-    SUM(number_of_products_sold) as type_sold
+    ROUND(
+        (SUM(revenue_generated) - SUM(manufacturing_costs) - SUM(shipping_costs))
+        / NULLIF(SUM(revenue_generated), 0),
+        4
+    ) AS profit_margin,
+    SUM(number_of_products_sold) AS type_sold
 FROM supply_chain
 GROUP BY product_type
 ORDER BY profit_margin DESC;
@@ -49,10 +60,10 @@ ORDER BY manufacturing_costs DESC;
 --Which products/categories have the highest shipping-cost burden?
 SELECT
     product_type,
-   ROUND((SUM(shipping_costs)/ SUM(revenue_generated)), 5) as shipping_cost
+    ROUND((SUM(shipping_costs) / SUM(revenue_generated)), 5) AS shipping_cost_ratio
 FROM supply_chain
 GROUP BY product_type
-ORDER BY shipping_cost
+ORDER BY shipping_cost_ratio;
 
 --Which suppliers provide the best cost-quality balance?
 SELECT 

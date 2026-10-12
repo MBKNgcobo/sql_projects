@@ -29,15 +29,14 @@ GROUP BY pro.category_name
 ORDER BY application_count DESC;
 
 --Which vehicle types are most frequently represented in the marketplace?
-SELECT 
+SELECT
     vt.vehicle_type_name,
-    COUNT(DISTINCT app.app_id) as application_count
+    COUNT(DISTINCT app.app_id) AS application_count
 FROM applications app
 JOIN vehicle_type vt
-    on app.vehicle_type_id = vt.id
-JOIN vehicles ve
-    on vt.id = ve.vehicle_type_id
+    ON app.vehicle_type_id = vt.id
 GROUP BY vt.vehicle_type_name
-ORDER BY application_count;
+ORDER BY application_count DESC;
+
 
 

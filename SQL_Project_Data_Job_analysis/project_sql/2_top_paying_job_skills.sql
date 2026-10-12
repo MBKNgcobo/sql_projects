@@ -18,7 +18,7 @@ WITH top_paying_jobs AS (
 )
 SELECT 
     top_paying_jobs.*,
-    skills
+    skills_dim.skills
 FROM top_paying_jobs
 INNER JOIN public.skills_job_dim
 ON top_paying_jobs.job_id = skills_job_dim.job_id

@@ -54,9 +54,9 @@ particularly within the skincare category.
 --Which transportation modes have the highest costs and/or shipping times?
 SELECT 
     transportation_modes,
-    AVG(shipping_costs) as transportaion_cost,
-    AVG(shipping_times) as avg_shipping_times,
-    COUNT(*) as transportation_count
+    AVG(shipping_costs) AS transportation_cost,
+    AVG(shipping_times) AS avg_shipping_times,
+    COUNT(*) AS transportation_count
 FROM supply_chain
 GROUP BY transportation_modes;
 /*
@@ -64,20 +64,17 @@ Road provides the fastest average delivery,
 while Sea provides the lowest average shipping cost.
 */
 
---Which customer demographic generates the most revenue?
+--Which customers/demographics generate the most revenue?
+-- The dataset has four demographic values: Unknown (31), Female (25),
+-- Non-binary (23) and Male (21); 'Unknown' is a legitimate value, not NULL.
 SELECT
-    sku,
-    product_type,
-    price,
-    number_of_products_sold,
-    revenue_generated,
-    ROUND(
-        revenue_generated / NULLIF(number_of_products_sold, 0),
-        2
-    ) AS revenue_per_unit
+    customer_demographics,
+    COUNT(*) AS product_listings,
+    SUM(revenue_generated) AS total_revenue,
+    SUM(number_of_products_sold) AS total_units_sold
 FROM supply_chain
-ORDER BY revenue_generated DESC
-LIMIT 10;
+GROUP BY customer_demographics
+ORDER BY total_revenue DESC;
 
 --Do longer shipping times appear to be associated with higher shipping costs?
 SELECT
@@ -131,11 +128,11 @@ LIMIT 20;
 --Shipping carrier performance
 SELECT 
     shipping_carriers,
-    Count(*) as number_of_shipments,
-    AVG(shipping_costs) as avg_shipping_cost,
-    AVG(shipping_times) as avg_shipping_time
+    COUNT(*) AS number_of_shipments,
+    AVG(shipping_costs) AS avg_shipping_cost,
+    AVG(shipping_times) AS avg_shipping_time
 FROM supply_chain
-GROUP bY shipping_carriers;
+GROUP BY shipping_carriers;
 /*
 Carrier B provides the strongest observed cost-speed performance, 
 combining the lowest average shipping cost (5.51) with the shortest average delivery time (5.30 days),

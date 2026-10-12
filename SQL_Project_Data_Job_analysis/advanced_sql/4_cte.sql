@@ -4,7 +4,7 @@ WITH job_postings_count AS (
         company_id,
         COUNT(*) AS job_count
     FROM job_postings_fact
-    GROUP BY  company_id
+    GROUP BY company_id
 )
 
 SELECT
@@ -16,5 +16,4 @@ SELECT
         WHEN job_postings_count.job_count >= 50 THEN 'High'
     END AS job_posting_range
 FROM company_dim
-JOIN job_postings_count ON company_dim.company_id = job_postings_count.company_id
-GROUP BY company_dim.name, job_postings_count.job_count;
+JOIN job_postings_count ON company_dim.company_id = job_postings_count.company_id;

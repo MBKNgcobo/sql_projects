@@ -58,7 +58,7 @@ ORDER BY quality_adjusted_cost;
 --Which suppliers are associated with Critical and High-Risk inventory products?
 WITH inventory_sales_ratio AS (
     SELECT
-        stock_levels::numeric / number_of_products_sold::numeric AS ratio,
+        stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS ratio,
         sku,
         product_type,
         supplier_name,
@@ -127,7 +127,7 @@ ORDER BY risk_percentage DESC;
 
 WITH inventory_sales_ratio AS (
     SELECT
-        stock_levels::numeric / number_of_products_sold::numeric AS ratio,
+        stock_levels::numeric / NULLIF(number_of_products_sold, 0) AS ratio,
         sku,
         product_type,
         supplier_name,
