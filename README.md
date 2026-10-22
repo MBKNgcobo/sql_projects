@@ -4,6 +4,8 @@ A collection of SQL projects focused on using data to answer **real-world busine
 
 These projects demonstrate my ability to work with relational data and use SQL to identify trends, calculate business metrics, investigate relationships between datasets, and turn raw data into actionable insights.
 
+Power BI dashboard: https://ufs4lifeacza-my.sharepoint.com/personal/2020085235_ufs4life_ac_za/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F2020085235%5Fufs4life%5Fac%5Fza%2FDocuments%2FDashboards%2FSupply%5Fchain%5Fdashboard%2Epbix&parent=%2Fpersonal%2F2020085235%5Fufs4life%5Fac%5Fza%2FDocuments%2FDashboards&ga=1
+
 ---
 
 ## Projects
